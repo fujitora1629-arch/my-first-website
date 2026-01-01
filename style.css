@@ -1,0 +1,278 @@
+/* បន្ថែម Font ខ្មែរ ពី Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@400;700&display=swap');
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    background: #ffffff; 
+    font-family: 'Hanuman', serif; /* ប្រើ Font ខ្មែរ Hanuman ជំនួស Khmer OS Battambang */
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-header { 
+    background: white; 
+    padding: 15px 0; 
+    border-bottom: 1px solid #eee; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+}
+
+.header-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+.shop-logo {
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.hero-container { 
+    position: relative; 
+    height: 450px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden; 
+}
+
+.bg-image { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.product-overlay { 
+    position: relative; 
+    z-index: 2; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.lip-oil-banner { 
+    height: 280px; 
+    mix-blend-mode: multiply; 
+}
+
+.khmer-text { 
+    height: 180px; 
+    mix-blend-mode: multiply; 
+}
+
+.shop-container { 
+    max-width: 1200px; 
+    margin: 40px auto 120px; 
+    padding: 0 20px; 
+}
+
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+}
+
+.product-card { 
+    border: 1px solid #eee; 
+    padding: 15px; 
+    text-align: center; 
+    border-radius: 8px; 
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.img-box img { 
+    width: 100%; 
+    aspect-ratio: 1/1; 
+    object-fit: contain; 
+}
+
+.product-info { 
+    display: flex; 
+    justify-content: space-between; 
+    margin: 15px 0; 
+    font-weight: bold; 
+    font-size: 0.95rem;
+}
+
+/* Hidden state for button swapping */
+.hidden { display: none !important; }
+
+.qty-container { 
+    display: flex; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    overflow: hidden; 
+    height: 40px; 
+}
+
+.qty-btn { 
+    background: #f9f9f9; 
+    border: none; 
+    width: 45px; 
+    cursor: pointer; 
+    font-size: 20px; 
+}
+
+.qty-input { 
+    border: none; 
+    width: 100%; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 16px; 
+    font-family: 'Hanuman', serif;
+}
+
+.add-btn { 
+    width: 100%; 
+    background: #333; /* ប្តូរពណ៌ទៅខ្មៅដិតបន្តិចឲ្យស្អាត */
+    color: white; 
+    border: none; 
+    padding: 12px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    height: 40px; 
+    font-family: 'Hanuman', serif;
+}
+
+.checkout-bar { 
+    position: fixed; 
+    bottom: -120px; 
+    left: 0; 
+    width: 100%; 
+    background: #000; 
+    color: white; 
+    padding: 15px 0; 
+    transition: 0.4s; 
+    z-index: 1000; 
+}
+
+.checkout-bar.show { bottom: 0; }
+
+.checkout-content { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
+}
+
+.cart-preview { display: flex; align-items: center; gap: 10px; }
+
+#last-item-img { 
+    width: 40px; 
+    height: 40px; 
+    background: white; 
+    border-radius: 4px; 
+    object-fit: contain; 
+}
+
+.checkout-btn { 
+    background: white; 
+    color: black; 
+    border: none; 
+    padding: 10px 25px; 
+    border-radius: 20px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    font-family: 'Hanuman', serif;
+}
+
+@media (max-width: 768px) { 
+    .product-grid { grid-template-columns: repeat(2, 1fr); } 
+    .hero-container { height: 350px; }
+}
+
+/* --- CHECKOUT PAGE STYLES --- */
+.checkout-page-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+.page-title { 
+    text-align: center; 
+    border-bottom: 2px dashed #eee; 
+    padding: 20px 0; 
+    margin-bottom: 30px; 
+    font-size: 1.5rem;
+}
+
+.checkout-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
+
+.forms-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    border-left: 4px solid #000;
+    padding-left: 10px;
+}
+
+.forms-section input, .forms-section select, .forms-section textarea {
+    width: 100%; 
+    padding: 12px; 
+    margin: 8px 0; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    box-sizing: border-box;
+    font-family: 'Hanuman', serif;
+}
+
+.payment-box { 
+    border: 1px solid #eee; 
+    padding: 15px; 
+    border-radius: 8px; 
+    margin: 10px 0; 
+}
+
+.purchase-btn { 
+    width: 100%; 
+    background: #000; 
+    color: #fff; 
+    padding: 15px; 
+    border: none; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    margin-top: 15px; 
+    font-size: 1.1rem;
+    font-family: 'Hanuman', serif;
+}
+
+.summary-section { 
+    background: #fdfdfd; 
+    padding: 20px; 
+    border: 1px dashed #ccc; 
+    border-radius: 10px; 
+    height: fit-content; 
+}
+
+.summary-row { display: flex; justify-content: space-between; margin: 10px 0; }
+
+.total { 
+    font-weight: bold; 
+    font-size: 1.2rem; 
+    color: #000; 
+    margin-top: 20px; 
+    border-top: 1px solid #eee; 
+    padding-top: 10px; 
+}
+
+.back-link { 
+    display: block; 
+    text-align: center; 
+    margin-top: 30px; 
+    color: #888; 
+    text-decoration: none; 
+}
+
+@media (max-width: 768px) { 
+    .checkout-layout { grid-template-columns: 1fr; } 
+}

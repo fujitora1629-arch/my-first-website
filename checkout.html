@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ការទូទាត់ប្រាក់ - ហាង ពេជ្រ ពិសី</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* QR Pop-up Styling */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .qr-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            font-family: 'Hanuman', serif;
+        }
+        .qr-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .close-qr-btn {
+            background: #000;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Hanuman', serif;
+        }
+    </style>
+</head>
+<body class="checkout-body">
+
+    <div id="qrModal" class="qr-modal">
+        <div class="qr-content">
+            <h3>ស្កេនដើម្បីទូទាត់ប្រាក់</h3>
+            <p>សូមផ្ញើប្រាក់តាមចំនួនសរុបតាមរយៈ ABA KHQR</p>
+            <img src="images/aba-qr.jpg" alt="ABA QR Code">
+            <p style="font-size: 0.9rem; color: #666;">បន្ទាប់ពីបង់ប្រាក់រួច ការបញ្ជាទិញរបស់អ្នកនឹងត្រូវបានដំណើរការ!</p>
+            <button class="close-qr-btn" onclick="closePayment()">រួចរាល់</button>
+        </div>
+    </div>
+
+    <div class="checkout-page-container">
+        <h1 class="page-title">🛍️ កន្ត្រកទំនិញ</h1>
+        <div id="bag-items-container"></div>
+
+        <h1 class="page-title">💰 ការទូទាត់ប្រាក់</h1>
+        <div class="checkout-layout">
+            <div class="forms-section">
+                <h3>ព័ត៌មានអ្នកទិញ</h3>
+                <input type="text" id="buyer-name" placeholder="ឈ្មោះអ្នកទិញ: * (ឧទាហរណ៍: សុខ ជា)">
+                <input type="text" id="buyer-phone" placeholder="លេខទូរស័ព្ទ: * (ឧទាហរណ៍: 0xx xxx xxx)">
+
+                <h3>ព័ត៌មានដឹកជញ្ជូន</h3>
+                <p style="font-size: 0.9rem; color: #555;">សេវាកម្មដឹកជញ្ជូនរហ័សដោយក្រុមហ៊ុន <strong>J&T Express</strong></p>
+                <input type="text" id="delivery-address" placeholder="អាសយដ្ឋាន: * (ឧទាហរណ៍: ផ្ទះលេខ... ផ្លូវលេខ...)">
+                
+                <select id="province">
+                    <option value="">ជ្រើសរើសខេត្ត/ក្រុង</option>
+                    <option value="ភ្នំពេញ">ភ្នំពេញ</option>
+                    <option value="កណ្តាល">កណ្តាល</option>
+                    <option value="ព្រៃវែង">ព្រៃវែង</option>
+                    <option value="សៀមរាប">សៀមរាប</option>
+                    <option value="បាត់ដំបង">បាត់ដំបង</option>
+                    <option value="តាកែវ">តាកែវ</option>
+                    <option value="កំពង់ឆ្នាំង">កំពង់ឆ្នាំង</option>
+                    <option value="កំពង់ស្ពឺ">កំពង់ស្ពឺ</option>
+                    <option value="បន្ទាយមានជ័យ">បន្ទាយមានជ័យ</option>
+                    <option value="កំពង់ធំ">កំពង់ធំ</option>
+                    <option value="ត្បូងឃ្មុំ">ត្បូងឃ្មុំ</option>
+                    <option value="កំពត">កំពត</option>
+                    <option value="កំពង់ចាម">កំពង់ចាម</option>
+                    <option value="ស្វាយរៀង">ស្វាយរៀង</option>
+                    <option value="ពោធិ៍សាត់">ពោធិ៍សាត់</option>
+                    <option value="ក្រចេះ">ក្រចេះ</option>
+                    <option value="ព្រះសីហនុ">ព្រះសីហនុ</option>
+                    <option value="ឧត្តរមានជ័យ">ឧត្តរមានជ័យ</option>
+                    <option value="រតនគិរី">រតនគិរី</option>
+                    <option value="ស្ទឹងត្រែង">ស្ទឹងត្រែង</option>
+                    <option value="កោះកុង">កោះកុង</option>
+                    <option value="មណ្ឌលគិរី">មណ្ឌលគិរី</option>
+                    <option value="កែប">កែប</option>
+                    <option value="ប៉ៃលិន">ប៉ៃលិន</option>
+                    <option value="ព្រះវិហារ">ព្រះវិហារ</option>
+                </select>
+                
+                <textarea id="order-note" placeholder="ចំណាំផ្សេងៗ: (ប្រសិនបើមាន...)"></textarea>
+
+                <h3>វិធីសាស្ត្រទូទាត់</h3>
+                <div class="payment-box">
+                    <label style="display: block; margin-bottom: 10px;">
+                        <input type="radio" name="pay" value="ABA" checked> ABA KHQR
+                    </label>
+                    <label style="display: block;">
+                        <input type="radio" name="pay" value="Acleda"> Acleda
+                    </label>
+                </div>
+                
+                <button class="purchase-btn" onclick="processOrder()">🛒 បញ្ជាទិញឥឡូវនេះ</button>
+            </div>
+
+            <div class="summary-section">
+                <h3 style="margin-top: 0;">សេចក្តីសង្ខេប</h3>
+                <div id="summary-items"></div>
+                <div class="summary-row" style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <span>សេវាដឹកជញ្ជូន</span>
+                    <span>$1.50</span>
+                </div>
+                <div class="summary-row total">
+                    <span>សរុបរួម:</span>
+                    <span id="final-price">$0.00</span>
+                </div>
+            </div>
+        </div>
+        <a href="index.html" class="back-link">← ត្រឡប់ទៅទំព័រដើម</a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const TELEGRAM_BOT_TOKEN = '8487616919:AAFg4AR2nV8Mh5MqoxIJbeZ4-5qn8oDJq4U'; 
+        const TELEGRAM_CHAT_ID = '7394515397';     
+
+        window.onload = function() {
+            if (typeof renderCheckoutPage === "function") {
+                renderCheckoutPage();
+            }
+        };
+
+        async function processOrder() {
+            const name = document.getElementById('buyer-name').value;
+            const phone = document.getElementById('buyer-phone').value;
+            const address = document.getElementById('delivery-address').value;
+            const province = document.getElementById('province').value;
+            const note = document.getElementById('order-note').value;
+            const finalPrice = document.getElementById('final-price').innerText;
+            const payment = document.querySelector('input[name="pay"]:checked').value;
+
+            if(!name || !phone || !province || !address) {
+                alert("សូមបំពេញព័ត៌មានដែលចាំបាច់ (*) ឲ្យបានគ្រប់គ្រាន់!");
+                return;
+            }
+
+            let itemList = "";
+            products.forEach(p => {
+                const qty = cart[p.id] || 0;
+                if (qty > 0) {
+                    itemList += `• ${p.name} (x${qty}) - $${(p.price * qty).toFixed(2)}\n`;
+                }
+            });
+
+            if (itemList === "") { 
+                alert("កន្ត្រកទំនិញរបស់អ្នកនៅទំនេរ!"); 
+                return; 
+            }
+
+            const message = `
+🔔 **ការបញ្ជាទិញថ្មី: PICH PISEY SHOP**
+------------------------------
+👤 **អ្នកទិញ:** ${name}
+📞 **លេខទូរស័ព្ទ:** ${phone}
+📍 **ទីតាំង:** ${province}, ${address}
+📝 **ចំណាំ:** ${note || "គ្មាន"}
+💳 **បង់ប្រាក់តាម:** ${payment}
+------------------------------
+🛍️ **ទំនិញដែលបានកម្មង់:**
+${itemList}
+------------------------------
+🚚 **សេវាដឹក:** $1.50
+💰 **សរុបសរុប:** ${finalPrice}
+------------------------------`;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                if (response.ok) {
+                    document.getElementById('qrModal').style.display = 'flex';
+                } else {
+                    alert("មានបញ្ហាបច្ចេកទេស។ សូមព្យាយាមម្តងទៀត!");
+                }
+            } catch (error) {
+                alert("មិនមានការតភ្ជាប់អ៊ីនធឺណិត។");
+            }
+        }
+
+        function closePayment() {
+            localStorage.removeItem('pichPiseyCart');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
