@@ -5,7 +5,7 @@ body {
     margin: 0; 
     padding: 0; 
     background: #ffffff; 
-    font-family: 'Hanuman', serif; /* ប្រើ Font ខ្មែរ Hanuman ជំនួស Khmer OS Battambang */
+    font-family: 'Hanuman', serif;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -59,6 +59,7 @@ body {
 
 .lip-oil-banner { 
     height: 280px; 
+    /* Important for background removal effect */
     mix-blend-mode: multiply; 
 }
 
@@ -85,6 +86,7 @@ body {
     text-align: center; 
     border-radius: 8px; 
     transition: 0.3s;
+    background: white;
 }
 
 .product-card:hover {
@@ -135,7 +137,7 @@ body {
 
 .add-btn { 
     width: 100%; 
-    background: #333; /* ប្តូរពណ៌ទៅខ្មៅដិតបន្តិចឲ្យស្អាត */
+    background: #333; 
     color: white; 
     border: none; 
     padding: 12px; 
@@ -188,11 +190,14 @@ body {
     font-weight: bold; 
     cursor: pointer; 
     font-family: 'Hanuman', serif;
+    text-decoration: none;
 }
 
 @media (max-width: 768px) { 
     .product-grid { grid-template-columns: repeat(2, 1fr); } 
     .hero-container { height: 350px; }
+    .lip-oil-banner { height: 180px; }
+    .khmer-text { height: 120px; }
 }
 
 /* --- CHECKOUT PAGE STYLES --- */
