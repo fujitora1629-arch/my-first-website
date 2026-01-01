@@ -1,6 +1,13 @@
 /* បន្ថែម Font ខ្មែរ ពី Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@400;700&display=swap');
 
+/* --- KEYFRAMES FOR FLOATING ANIMATION --- */
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); } /* Moves up 15px */
+    100% { transform: translateY(0px); }
+}
+
 body { 
     margin: 0; 
     padding: 0; 
@@ -33,9 +40,10 @@ body {
     font-weight: bold;
 }
 
+/* --- HERO SECTION WITH ANIMATION --- */
 .hero-container { 
     position: relative; 
-    height: 450px; 
+    height: 480px; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -54,20 +62,39 @@ body {
     z-index: 2; 
     display: flex; 
     align-items: center; 
-    gap: 15px; 
+    gap: 20px; 
 }
 
 .lip-oil-banner { 
-    height: 280px; 
-    /* Important for background removal effect */
+    height: 300px; 
+    width: auto;
+    object-contain: contain;
     mix-blend-mode: multiply; 
+    /* Adding a soft shadow to make it look like the example */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+/* Floating Effects with different timing for a natural feel */
+.float-1 { 
+    animation: floating 3s ease-in-out infinite; 
+}
+.float-2 { 
+    animation: floating 4s ease-in-out infinite; 
+    animation-delay: 0.5s;
+}
+.float-3 { 
+    animation: floating 3.5s ease-in-out infinite; 
+    animation-delay: 1s;
 }
 
 .khmer-text { 
     height: 180px; 
     mix-blend-mode: multiply; 
+    position: relative;
+    z-index: 5;
 }
 
+/* --- PRODUCT GRID --- */
 .shop-container { 
     max-width: 1200px; 
     margin: 40px auto 120px; 
@@ -86,7 +113,6 @@ body {
     text-align: center; 
     border-radius: 8px; 
     transition: 0.3s;
-    background: white;
 }
 
 .product-card:hover {
@@ -107,7 +133,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Hidden state for button swapping */
 .hidden { display: none !important; }
 
 .qty-container { 
@@ -190,14 +215,6 @@ body {
     font-weight: bold; 
     cursor: pointer; 
     font-family: 'Hanuman', serif;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) { 
-    .product-grid { grid-template-columns: repeat(2, 1fr); } 
-    .hero-container { height: 350px; }
-    .lip-oil-banner { height: 180px; }
-    .khmer-text { height: 120px; }
 }
 
 /* --- CHECKOUT PAGE STYLES --- */
@@ -278,6 +295,11 @@ body {
     text-decoration: none; 
 }
 
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) { 
+    .product-grid { grid-template-columns: repeat(2, 1fr); } 
+    .hero-container { height: 350px; }
+    .lip-oil-banner { height: 180px; }
+    .khmer-text { height: 100px; }
     .checkout-layout { grid-template-columns: 1fr; } 
 }
