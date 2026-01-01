@@ -1,5 +1,5 @@
 const products = [
-    { id: 1, name: "3 ពណ៌", price: 30, img: "krem1.jpg" },
+    { id: 1, name: "3 ពណ៌", price: 30, img: "Krem1.jpg" },
     { id: 2, name: "រំយោល", price: 10, img: "krem2.jpg" },
     { id: 3, name: "ម្លិះ", price: 10, img: "krem3.jpg" },
     { id: 4, name: "ត្របែកព្រៃ", price: 10, img: "krem4.jpg" },
@@ -63,8 +63,7 @@ function updateUI(imgPath) {
 
     if (badge) badge.innerText = total;
     if (barText) barText.innerText = `${total} មុខទំនិញ`;
-    
-    // Path updated: images/ prefix removed to look in the main folder
+    // Path updated: images/ removed
     if (imgPath && lastImg) lastImg.src = `${imgPath}`;
 
     if (total > 0 && bar) {
@@ -113,10 +112,7 @@ function renderCheckoutPage() {
     });
 
     const deliveryFee = subtotal > 0 ? 1.5 : 0;
-    const finalPriceElement = document.getElementById('final-price');
-    if (finalPriceElement) {
-        finalPriceElement.innerText = `$${(subtotal + deliveryFee).toFixed(2)}`;
-    }
+    document.getElementById('final-price').innerText = `$${(subtotal + deliveryFee).toFixed(2)}`;
 
     if (subtotal === 0) {
         bagContainer.innerHTML = '<p style="text-align:center; padding:30px; color:#888;">កន្ត្រកទំនិញរបស់អ្នកនៅទំនេរ។</p>';
@@ -137,10 +133,8 @@ function removeItemFromCheckout(id) {
     renderCheckoutPage();
 }
 
-// Initial render
 render();
-
-// Check if current page is checkout.html
+// Use endsWith to check for the page more reliably
 if (window.location.pathname.endsWith('checkout.html')) {
     renderCheckoutPage();
 }
